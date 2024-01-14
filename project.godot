@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="EcaHelper"
+run/main_scene="res://eca_helper.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/subwindows/embed_subwindows=false
 
 [rendering]
 
