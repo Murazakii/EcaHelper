@@ -5,6 +5,9 @@ var position_pointeur:int
 
 @onready var bg_color = $Bg_color
 @onready var file_dialog = $FileDialog
+
+var pseudo_to_track:String = ""
+
 @onready var label_compteur_sept_fetiche = $CenterContainer/HBoxContainer/LabelCompteurSeptFetiche
 var compteur_sept_fetiche:int = 0 : set = _set_compteur_sept_fetiche
 
@@ -26,7 +29,7 @@ func _on_file_dialog_file_selected(path):
 		log_file.seek(position_pointeur)
 		while log_file.get_position() < log_file.get_length():
 			var line = log_file.get_line()
-			if line.contains("Yamisoki: Sept fétiche :"):
+			if line.contains(pseudo_to_track + ": Sept fétiche :"):
 				compteur_sept_fetiche += 1
 		position_pointeur = log_file.get_position()
 		await get_tree().create_timer(0.2).timeout
@@ -71,3 +74,7 @@ func _on_button_moins_pressed():
 
 func _on_color_picker_color_changed(color):
 	bg_color.color = color
+
+
+func _on_pseudo_to_track_text_changed(new_text):
+	pseudo_to_track = new_text

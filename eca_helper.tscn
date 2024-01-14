@@ -58,45 +58,60 @@ layout_mode = 2
 text = "0"
 
 [node name="TextureAllIn" type="TextureRect" parent="CenterContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 texture = ExtResource("3_r33js")
 
 [node name="LabelCompteurAllIn" type="Label" parent="CenterContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 text = "50%"
 
-[node name="Outils" type="HBoxContainer" parent="."]
+[node name="Outils" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ButtonReset" type="Button" parent="Outils"]
+[node name="LigneOutils1" type="HBoxContainer" parent="Outils"]
+layout_mode = 2
+
+[node name="PseudoToTrack" type="LineEdit" parent="Outils/LigneOutils1"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Pseudo a traquer"
+expand_to_text_length = true
+
+[node name="LigneOutils2" type="HBoxContainer" parent="Outils"]
+layout_mode = 2
+
+[node name="ButtonReset" type="Button" parent="Outils/LigneOutils2"]
 layout_mode = 2
 text = "Reset"
 
-[node name="ButtonPlus" type="Button" parent="Outils"]
+[node name="ButtonPlus" type="Button" parent="Outils/LigneOutils2"]
 layout_mode = 2
 text = "+"
 
-[node name="ButtonMoins" type="Button" parent="Outils"]
+[node name="ButtonMoins" type="Button" parent="Outils/LigneOutils2"]
 layout_mode = 2
 text = "-"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Outils"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Outils/LigneOutils2"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Outils/VBoxContainer"]
+[node name="Label" type="Label" parent="Outils/LigneOutils2/VBoxContainer"]
 layout_mode = 2
 text = "Couleur BG"
 
-[node name="ColorPicker" type="ColorPickerButton" parent="Outils/VBoxContainer"]
+[node name="ColorPicker" type="ColorPickerButton" parent="Outils/LigneOutils2/VBoxContainer"]
 layout_mode = 2
 text = "------"
 color = Color(1, 1, 1, 1)
 
 [connection signal="canceled" from="FileDialog" to="." method="_on_file_dialog_canceled"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
-[connection signal="pressed" from="Outils/ButtonReset" to="." method="_on_button_reset_pressed"]
-[connection signal="pressed" from="Outils/ButtonPlus" to="." method="_on_button_plus_pressed"]
-[connection signal="pressed" from="Outils/ButtonMoins" to="." method="_on_button_moins_pressed"]
-[connection signal="color_changed" from="Outils/VBoxContainer/ColorPicker" to="." method="_on_color_picker_color_changed"]
+[connection signal="text_changed" from="Outils/LigneOutils1/PseudoToTrack" to="." method="_on_pseudo_to_track_text_changed"]
+[connection signal="pressed" from="Outils/LigneOutils2/ButtonReset" to="." method="_on_button_reset_pressed"]
+[connection signal="pressed" from="Outils/LigneOutils2/ButtonPlus" to="." method="_on_button_plus_pressed"]
+[connection signal="pressed" from="Outils/LigneOutils2/ButtonMoins" to="." method="_on_button_moins_pressed"]
+[connection signal="color_changed" from="Outils/LigneOutils2/VBoxContainer/ColorPicker" to="." method="_on_color_picker_color_changed"]
